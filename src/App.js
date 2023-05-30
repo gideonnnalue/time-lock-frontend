@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { extendTheme, ChakraProvider, Container } from "@chakra-ui/react";
+import Header from "./components/Header";
+import Main from "./components/Main";
+
+const customTheme = {
+  styles: {
+    global: (props) => ({
+      "html, body": {
+        fontFamily: "Roboto Mono",
+      },
+    }),
+  },
+  colors: {
+    brand: "#255849",
+  },
+};
+
+const theme = extendTheme(customTheme);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider theme={theme}>
+      <Container maxWidth="90%">
+        <Header />
+        <Main />
+      </Container>
+    </ChakraProvider>
   );
 }
 
